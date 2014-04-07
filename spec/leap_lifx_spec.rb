@@ -1,1 +1,1 @@
-leap-lifx_spec.rb
+require 'spec_helper'
