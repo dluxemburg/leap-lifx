@@ -29,7 +29,7 @@ leapLifx.on('frame', function(frame){
 server.listen(app.settings.port, function(){
   console.log('App server listening at http://localhost:'+app.settings.port)
 })
-lifx.startServer()
+lifx.start()
 leapLifx.start()
 
 

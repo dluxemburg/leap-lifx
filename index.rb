@@ -12,7 +12,7 @@ server.mount_proc '/' do |req, res|
   color = LIFX::Color.hsl(*body['hsl'])
   white = LIFX::Color.white(brightness:brightness)
   lifx.lights.set_color(color,duration: 0.125)
-  res.body = body.to_s
+  res.body = JSON.generate(body)
 end
 
 server.start
