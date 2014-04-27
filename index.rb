@@ -1,18 +1,17 @@
-require 'webrick'
 require 'json'
 require 'lifx'
 
 lifx = LIFX::Client.lan
-lifx.discover
-server = WEBrick::HTTPServer.new(:Port => 8000)
 
-server.mount_proc '/' do |req, res|
-  body = JSON.parse(req.body)
-  brightness = (body['brightness'] || 0)
-  color = LIFX::Color.hsl(*body['hsl'])
-  white = LIFX::Color.white(brightness:brightness)
-  lifx.lights.set_color(color,duration: 0.125)
-  res.body = JSON.generate(body)
+lifx.discover! do |lights|
+  $stdout.write(JSON.generate({event: 'started', data: {}}))
+  $stdout.flush
 end
 
-server.start
+while raw = $stdin.gets
+  body = JSON.parse(raw)
+  color = LIFX::Color.hsl(*body['hsl'])
+  lifx.lights.set_color(color,duration: 0.125)
+  $stdout.write(JSON.generate(event: 'response', data: body))
+  $stdout.flush
+end
