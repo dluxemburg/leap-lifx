@@ -2,10 +2,12 @@
   "name": "leap-lifx",
   "version": "0.0.1",
   "description": "Wave hand at lamp, lamp turn colors",
+  "repository": "git@github.com:dluxemburg/leap-lifx.git",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "postinstall": "gem install lifx && mocha"
+    "postinstall": "gem install lifx && npm test",
+    "start": "node index.js"
   },
   "dependencies": {
     "leapjs": "0.4.3",

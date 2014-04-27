@@ -9,6 +9,7 @@ var express = require('express'),
     })
 
 app.use(express.static(__dirname + '/static'));
+app.set('port', process.env.PORT || '8888')
 io.set('log level', 2)
 
 leapLifx.on('frame', function(frame){
@@ -25,7 +26,9 @@ leapLifx.on('frame', function(frame){
 
 })
 
-server.listen(8888)
+server.listen(app.settings.port, function(){
+  console.log('App server listening at http://localhost:'+app.settings.port)
+})
 lifx.startServer()
 leapLifx.start()
 
