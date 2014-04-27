@@ -1,0 +1,24 @@
+{
+  "name": "leap-lifx",
+  "version": "0.0.1",
+  "description": "Wave hand at lamp, lamp turn colors",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "postinstall": "gem install lifx && mocha"
+  },
+  "dependencies": {
+    "leapjs": "0.4.3",
+    "request": "latest",
+    "express": "^4.1.0",
+    "socket.io": "^0.9.16",
+    "angular": "^1.2.16",
+    "lodash": "^2.4.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^1.18.2",
+    "should": "^3.3.1"
+  }
+}

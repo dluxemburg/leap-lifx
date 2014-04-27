@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leap Lifx</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/styles.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="LeapLifx">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Leap Lifx</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/#">Main</a></li>
+<!--             <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li> -->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container" ng-controller="LeapLifxCtrl">
+      <div class="row">
+        <div class="col-sm-6" ng-repeat="hand in hands">
+          <table class="hand-table table table-bordered">
+            <tr>
+              <th>Finger Count</th>
+              <td colspan="3">{{ hand.fingers.length }}</td>
+            </tr>
+            <tr>
+              <th>Pointables Count</th>
+              <td colspan="3">{{ hand.pointables.length }}</td>
+            </tr>
+            <tr class="tripple">
+              <th>Color</th>
+              <td>H: {{ hand.hsl[0] }}</td>
+              <td>S: {{ hand.hsl[1] }}</td>
+              <td>L: {{ hand.hsl[2] }}</td>
+            </tr>
+            <tr>
+              <th></th>
+              <td style="background-color: hsl({{hand.hsl[0]}},{{hand.hsl[1]*100}}%, {{hand.hsl[2]*100}}%);"></td>
+            </tr>
+            <tr class="tripple">
+              <th>Plam Position</th>
+              <td>X: {{ hand.palmPosition[0] }}</td>
+              <td>Y: {{ hand.palmPosition[1] }}</td>
+              <td>Z: {{ hand.palmPosition[2] }}</td>
+            </tr>
+            <tr class="tripple">
+              <th>Plam Normal</th>
+              <td>{{ hand.palmNormal[0] }}</td>
+              <td>{{ hand.palmNormal[1] }}</td>
+              <td>{{ hand.palmNormal[2] }}</td>
+            </tr>
+          </table>
+          <pre>{{ hand | json }}</pre>
+        </div>
+      </div>
+
+
+    </div><!-- /.container -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts.js"></script>
+  </body>
+</html>
