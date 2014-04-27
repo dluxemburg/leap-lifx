@@ -1,29 +1,3 @@
-# Leap::Lifx
+#leap-lifx
 
-TODO: Write a gem description
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'leap-lifx'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install leap-lifx
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/leap-lifx/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+A little application for controlling [LIFX bulbs](http://lifx.co/) with a [Leap Motion](https://www.leapmotion.com/) Controller.
