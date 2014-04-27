@@ -2,25 +2,34 @@
   "name": "leap-lifx",
   "version": "0.0.1",
   "description": "Wave hand at lamp, lamp turn colors",
-  "repository": "git@github.com:dluxemburg/leap-lifx.git",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
     "postinstall": "gem install lifx && npm test",
     "start": "node index.js"
   },
+  "author": {
+    "name": "Daniel Luxemburg",
+    "email": "daniel.luxemburg@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dluxemburg/leap-lifx"
+  },
+  "license": "MIT",
   "dependencies": {
-    "leapjs": "0.4.3",
-    "request": "latest",
+    "leapjs": "^0.4.3",
+    "request": "^2.34.0",
     "express": "^4.1.0",
     "socket.io": "^0.9.16",
     "angular": "^1.2.16",
     "lodash": "^2.4.1"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "mocha": "^1.18.2",
     "should": "^3.3.1"
-  }
+  },
+  "engines": [
+    "node >= 0.10.0"
+  ]
 }
