@@ -21,7 +21,7 @@ leapLifx.on('frame', function(frame){
   }
 
   if (frame.hands.length > 0) {
-    lifx.post({hsl: frame.hands[0].hsl})
+    lifx.send({hsl: frame.hands[0].hsl})
   }
 
 })
