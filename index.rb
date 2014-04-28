@@ -2,8 +2,6 @@ require 'json'
 require 'lifx'
 
 lifx = LIFX::Client.lan
-
-
 lifx.discover
 
 while lifx.lights.count < 1
@@ -17,7 +15,6 @@ $stdout.write(JSON.generate({
   }
 }))
 $stdout.flush
-
 
 while raw = $stdin.gets
   body = JSON.parse(raw)
