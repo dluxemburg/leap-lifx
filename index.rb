@@ -3,10 +3,21 @@ require 'lifx'
 
 lifx = LIFX::Client.lan
 
-lifx.discover! do |lights|
-  $stdout.write(JSON.generate({event: 'started', data: {}}))
-  $stdout.flush
+
+lifx.discover
+
+while lifx.lights.count < 1
+  sleep(0.1)
 end
+
+$stdout.write(JSON.generate({
+  event: 'started',
+  data: {
+    count: lifx.lights.count
+  }
+}))
+$stdout.flush
+
 
 while raw = $stdin.gets
   body = JSON.parse(raw)
