@@ -4,6 +4,8 @@ var should = require('should'),
 
 describe('Lifx', function(){
 
+  this.timeout(5000)
+
   it("starts a server", function(done){
     var lifx = new Lifx()
     lifx.on('started',function(){
