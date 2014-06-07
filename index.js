@@ -3,10 +3,21 @@ var express = require('express'),
     app = express()
     server = require('http').createServer(app)
     io = require('socket.io').listen(server)
-    lifx = require('./lib/lifx').createLifx({})
     leapLifx = require('./lib/leap-lifx').createLeapLifx({
       controller: new Leap.Controller()
     })
+
+var leftLifx = require('./lib/lifx').createLifx({
+  minLights: 1,
+  defaultLabel: 'Left'
+})
+
+var rightLifx = require('./lib/lifx').createLifx({
+  minLights: 1,
+  defaultLabel: 'Right'
+})
+
+var lifxs = [leftLifx, rightLifx]
 
 app.use(express.static(__dirname + '/static'));
 app.set('port', process.env.PORT || '8888')
@@ -20,16 +31,18 @@ leapLifx.on('frame', function(frame){
     console.log('Failed to serialize frame: '+e.message)
   }
 
-  if (frame.hands.length > 0) {
-    lifx.send({hsl: frame.hands[0].hsl})
-  }
+  frame.hands.forEach(function(hand, index){
+    if(lifxs[index]) lifxs[index].hsl(hand.hsl)
+  })
 
 })
 
 server.listen(app.settings.port, function(){
   console.log('App server listening at http://localhost:'+app.settings.port)
 })
-lifx.start()
+
+leftLifx.start()
+rightLifx.start()
 leapLifx.start()
 
 

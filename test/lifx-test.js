@@ -4,15 +4,15 @@ var should = require('should'),
 
 describe('Lifx', function(){
 
-  this.timeout(5000)
+  this.timeout(20000)
 
   it("starts a server", function(done){
     var lifx = new Lifx()
-    lifx.on('started',function(){
-      lifx.send({hsl: [1,2,4]})
+    lifx.on('ready',function(){
+      lifx.send({color: ['hsl',1,2,4]})
     })
     lifx.on('response', function(body){
-      body.should.eql({hsl: [1,2,4]})
+      body.color.should.eql(['hsl',1,2,4])
       lifx.stop(done)
     })
     lifx.start()
