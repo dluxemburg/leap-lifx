@@ -1,11 +1,10 @@
 {
   "name": "leap-lifx",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "Wave hand at lamp, lamp turn colors",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "postinstall": "gem install lifx && npm test",
     "start": "node index.js"
   },
   "author": {
@@ -18,17 +17,19 @@
   },
   "license": "MIT",
   "dependencies": {
-    "leapjs": "^0.4.3",
-    "express": "^4.1.0",
-    "socket.io": "^0.9.16",
-    "angular": "^1.2.16",
-    "lodash": "^2.4.1"
+    "angular": "^1.5.8",
+    "express": "^4.14.0",
+    "leapjs": "^0.6.4",
+    "lodash": "^4.16.2",
+    "node-lifx": "^0.6.0",
+    "socket.io": "^1.4.5",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
-    "mocha": "^1.18.2",
-    "should": "^3.3.1"
+    "mocha": "^3.1.0",
+    "should": "^11.1.0"
   },
   "engines": [
-    "node >= 0.10.0"
+    "node >= 6.0.0"
   ]
 }
