@@ -3,7 +3,7 @@ Description=Leap Lifx
 # Requires=After=leapd.service
 
 [Service]
-ExecStart=/usr/bin/env node /home/dluxemburg/leap-lifx/index.js
+ExecStart=/opt/leap-lifx
 Restart=always
 RestartSec=10
 StandardOutput=syslog
