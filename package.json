@@ -18,7 +18,12 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.1",
+    "denodeify": "^1.2.1",
     "express": "^4.14.0",
+    "forever-monitor": "^1.7.0",
     "leapjs": "^0.6.4",
     "lodash": "^4.16.2",
     "node-lifx": "^0.6.0",

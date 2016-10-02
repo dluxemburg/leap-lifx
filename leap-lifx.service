@@ -1,0 +1,15 @@
+[Unit]
+Description=Leap Lifx
+# Requires=After=leapd.service
+
+[Service]
+ExecStart=/usr/bin/env node /home/dluxemburg/leap-lifx/index.js
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=leap-lifx
+Environment=NODE_ENV=production PORT=5000
+
+[Install]
+WantedBy=multi-user.target

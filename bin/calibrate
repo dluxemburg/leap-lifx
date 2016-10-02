@@ -1,36 +1,33 @@
 #!/usr/bin/env node
 
+const denodeify = require('denodeify');
 const fs = require('fs');
 const Leap = require('leapjs');
 const max = require('lodash/max');
 const min = require('lodash/min');
 
-let extremes = [[0,0], [0,0], [0,0]];
-
-let writeCalibration = (() => {
+const writeCalibration = (() => {
   let lastWrite = Promise.resolve();
   return (payload) => {
     lastWrite = lastWrite.then(() => {
-      return new Promise((resolve, reject) => {
-        fs.writeFile('.leap-calibration', payload, 'utf-8', (err) => {
-          if (err) return reject(err);
-          resolve();
-        });
-      });
+      return denodeify(fs.writeFile)('.leap-calibration', payload, 'utf-8');
     });
   };
 })();
 
+let extremes = [[0,0], [0,0], [0,0]];
+
 Leap.loop(frame => {
   let extremesWere = JSON.stringify(extremes);
   frame.hands.forEach(hand => {
-    hand.palmPosition.forEach((v, i) => {
-      extremes[i][0] = Math.floor(min([v, extremes[i][0]]));
-      extremes[i][1] = Math.ceil(max([v, extremes[i][1]]));
+    hand.palmPosition.forEach((v, di) => {
+      extremes[di][0] = Math.floor(min([v, extremes[di][0]]));
+      extremes[di][1] = Math.ceil(max([v, extremes[di][1]]));
     });
   });
-  if (JSON.stringify(extremes) !== extremesWere) {
+  let extremesAre = JSON.stringify(extremes);
+  if (extremesAre !== extremesWere) {
     process.stdout.write(`${extremes.map(e => e.join(',')).join(' ')}\n`);
-    writeCalibration(JSON.stringify(extremes));
+    writeCalibration(extremesAre);
   }
 });
